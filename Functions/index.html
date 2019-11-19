@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Functions</title>
+    <script type="text/javascript" src="js/functions.js"></script>
+</head>    
+<body>
+    <h3>Todas as funções estão escrevendo no Console</h3>
+    <br/>
+    <label>Chamada simples de função:</label>
+    <p>
+        <input type="button" onclick="escreva()" value="Escreva">
+    </p>
+    <label>Função recebendo um parametro simples:</label>
+    <p>
+        <input type="text" id="mensagem">
+        <input type="button" onclick="escrevaMensagem(document.getElementById('mensagem').value)" value="Escreva a Mensagem">
+    </p> 
+    <label>Função com retorno: Soma de dois numeros</label>
+    <p>
+        <input type="text" id="numero1" placeholder="numero1">
+        <input type="text" id="numero2" placeholder="numero2">
+        <input type="button" 
+               onclick="soma(document.getElementById('numero1').value, document.getElementById('numero2').value)" 
+               value="Somar">
+        
+        <input type="text" id="resultado" placeholder="resultado">
+    </p>
+    <p> 
+        <label>Função com parametros implicitos: Informando um endereço</label>
+        <input type="text" id="rua" placeholder="nome da rua">
+        <input type="text" id="numero_casa" placeholder="numero">
+        <input type="text" id="bairro" placeholder="bairro">
+        <input type="button" 
+               onclick="escreverEndereco(document.getElementById('rua').value, 
+                                         document.getElementById('numero_casa').value, 
+                                         document.getElementById('bairro').value,
+                                         'CEP: 1212123',
+                                         'País: Brasil',
+                                         'Cidade: São Paulo')" 
+               value="Escrever Endereco">
+        <br/>
+        <textarea id="endereco" placeholder="Endereco completo"></textarea>
+    </p>
+</body>
+</html>
