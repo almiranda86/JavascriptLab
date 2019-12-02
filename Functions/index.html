@@ -8,40 +8,95 @@
 <body>
     <h3>Todas as funções estão escrevendo no Console</h3>
     <br/>
-    <label>Chamada simples de função:</label>
-    <p>
-        <input type="button" onclick="escreva()" value="Escreva">
-    </p>
-    <label>Função recebendo um parametro simples:</label>
-    <p>
-        <input type="text" id="mensagem">
-        <input type="button" onclick="escrevaMensagem(document.getElementById('mensagem').value)" value="Escreva a Mensagem">
-    </p> 
-    <label>Função com retorno: Soma de dois numeros</label>
-    <p>
-        <input type="text" id="numero1" placeholder="numero1">
-        <input type="text" id="numero2" placeholder="numero2">
-        <input type="button" 
-               onclick="soma(document.getElementById('numero1').value, document.getElementById('numero2').value)" 
-               value="Somar">
-        
-        <input type="text" id="resultado" placeholder="resultado">
-    </p>
-    <p> 
+    <div>
+        <label>Chamada simples de função:</label>
+        <p>
+            <input type="button" onclick="escreva()" value="Escreva">
+        </p>
+        <label>Função recebendo um parametro simples:</label>
+        <p>
+            <input type="text" id="mensagem">
+            <input type="button" onclick="escrevaMensagem(document.getElementById('mensagem').value)" value="Escreva a Mensagem">
+        </p> 
+    </div>
+    <div>
+        <label>Função com retorno: Soma de dois numeros</label>
+        <p>
+            <input type="text" id="numero1" placeholder="numero1">
+            <input type="text" id="numero2" placeholder="numero2">
+            <input type="button" 
+                onclick="soma(document.getElementById('numero1').value, document.getElementById('numero2').value)" 
+                value="Somar">
+            
+            <input type="text" id="resultado" placeholder="resultado">
+        </p>
+    </div>
+    <div>
         <label>Função com parametros implicitos: Informando um endereço</label>
-        <input type="text" id="rua" placeholder="nome da rua">
-        <input type="text" id="numero_casa" placeholder="numero">
-        <input type="text" id="bairro" placeholder="bairro">
-        <input type="button" 
-               onclick="escreverEndereco(document.getElementById('rua').value, 
-                                         document.getElementById('numero_casa').value, 
-                                         document.getElementById('bairro').value,
-                                         'CEP: 1212123',
-                                         'País: Brasil',
-                                         'Cidade: São Paulo')" 
-               value="Escrever Endereco">
-        <br/>
-        <textarea id="endereco" placeholder="Endereco completo"></textarea>
-    </p>
+        <p>    
+            <input type="text" id="rua" placeholder="nome da rua">
+            <input type="text" id="numero_casa" placeholder="numero">
+            <input type="text" id="bairro" placeholder="bairro">
+            <input type="button" 
+                onclick="escreverEndereco(document.getElementById('rua').value, 
+                                            document.getElementById('numero_casa').value, 
+                                            document.getElementById('bairro').value,
+                                            'CEP: 1212123',
+                                            'País: Brasil',
+                                            'Cidade: São Paulo')" 
+                value="Escrever Endereco">
+            <br/>
+            <textarea id="endereco" placeholder="Endereco completo"></textarea>
+        </p>
+    </div>
+    <div>
+        <label>Função que soma valores em um array</label>
+        <p>
+            <input type="text" id="rangeNumber" placeholder="informe os valores separados por virgula">
+            <input type="button" 
+                onclick="somarTudo(document.getElementById('rangeNumber').value)"
+                value="Somar">
+            <label id="resultRangeSum"></label>
+        </p>
+    </div>
+    <div>
+        <label>Função Auto Invocavel</label>
+        <label>Resultado no Console log</label>
+    </div>
+    <div>
+        <label>
+            Função como variavel - Somar dois numeros
+        </label>
+    </div>
+    <div>
+        <label>
+            Função com callback
+        </label>
+        <p>
+            <input type="text" id="numero3" placeholder="numero1">
+            <input type="text" id="numero4" placeholder="numero2">
+            <input type="button" 
+                onclick="somaCallback(document.getElementById('numero3').value, 
+                                      document.getElementById('numero4').value,
+                                      callback)"
+                value="Somar callback">
+            <label id="resultCallback"></label>
+            <label id="resultCallbackA"></label>
+        </p>
+    </div>    
+    <div>
+            <label>
+                Função com valor default
+            </label>
+            <p>
+                <input type="text" id="val1" placeholder="valor 1">
+                <input type="text" id="val2" placeholder="valor 2">
+                <input type="button" 
+                    onclick="valorDefault(document.getElementById('val1').value, 
+                                          document.getElementById('val2').value)"
+                    value="Valor default">
+                <label id="resultValorDefault"></label>
+            </p>
+        </div>      
 </body>
 </html>
