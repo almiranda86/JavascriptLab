@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Functions</title>
+    <script type="text/javascript" src="js/objects.js"></script>
+</head>    
+<body>
+    <h3>Alguns exemplos podem ser impressos no Console</h3>
+    <br/>
+    <div>
+        <label>Objeto simples - Usuario</label>
+        <p>
+            <input type="text" id="nome" placeholder="Nome usuario">
+            <input type="text" id="idade" placeholder="Idade usuario">
+            <input type="text" id="email" placeholder="Email usuario">
+        </p>
+        <p>
+            <input type="button" onclick="criarObjetoSimples(
+                                        document.getElementById('nome').value,
+                                        document.getElementById('idade').value,
+                                        document.getElementById('email').value)" 
+            value="Objeto Simples">
+        </p>
+        <p>
+            <label id="valorObjeto"></label>
+        </p>
+    </div>
+    <div>
+        <label>Objeto com função - Usuario</label>
+        <p>
+            <input type="text" id="nome2" placeholder="Nome usuario">
+        </p>
+        <p>
+            <input type="button" onclick="criarObjetoFuncao(document.getElementById('nome2').value)" 
+                value="Objeto com função">
+        </p>
+        <p>
+            <label id="valorObjeto"></label>
+        </p>
+    </div>
+    <div>
+            <label>Merge de objetos</label>
+            <p>
+                <label>Objeto 1:</label>
+                <label id="objeto1"></label>
+            </p>
+            <p>
+                <label>Objeto 2:</label>
+                <label id="objeto2"></label>
+            </p>
+            <p>
+                <input type="button" onclick="mergeObjects()" 
+                    value="Merge objects">
+            </p>
+            <p>
+                <label id="mergeObjeto"></label>
+            </p>
+        </div>    
+        <div>
+                <label>Object com Get & Set</label>
+                <p>
+                    <input type="button" onclick="objectGetSet()" 
+                        value="Get and Set">
+                </p>
+            </div>            
+</body>
+</html>
