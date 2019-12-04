@@ -136,8 +136,14 @@ function destructObject(valor1, valor2, valor3){
     var {valor1: primeiroValor, 
          valor2, 
          valor3:{ valor = 'Default'}} = novoObjeto;
-    var valores = `${primeiroValor} - ${valor2} - ${valor}`;
+    
+         var valores = `${primeiroValor} - ${valor2} - ${valor}`;
 
-    document.getElementById("valorObjetoDestruct").textContent = valores;
+    if(document.getElementById("valorObjetoDestruct")){
+        document.getElementById("valorObjetoDestruct").textContent = valores;
+    }
+    
     console.log(valores);
 }
+
+destructObject('A', 'B');
