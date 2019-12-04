@@ -122,3 +122,22 @@ function objectGetSet(){
     usuario.atual = 2;
     console.log(usuario.atual);
 }
+
+
+function destructObject(valor1, valor2, valor3){
+    var novoObjeto = {
+        valor1: valor1,
+        valor2: valor2,
+        valor3:{
+            valor: valor3
+        } 
+    };
+
+    var {valor1: primeiroValor, 
+         valor2, 
+         valor3:{ valor = 'Default'}} = novoObjeto;
+    var valores = `${primeiroValor} - ${valor2} - ${valor}`;
+
+    document.getElementById("valorObjetoDestruct").textContent = valores;
+    console.log(valores);
+}

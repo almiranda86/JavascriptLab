@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>JS Functions</title>
     <script type="text/javascript" src="js/objects.js"></script>
-</head>    
+</head>
+
 <body>
     <h3>Alguns exemplos podem ser impressos no Console</h3>
-    <br/>
+    <br />
     <div>
         <label>Objeto simples - Usuario</label>
         <p>
@@ -19,8 +21,7 @@
             <input type="button" onclick="criarObjetoSimples(
                                         document.getElementById('nome').value,
                                         document.getElementById('idade').value,
-                                        document.getElementById('email').value)" 
-            value="Objeto Simples">
+                                        document.getElementById('email').value)" value="Objeto Simples">
         </p>
         <p>
             <label id="valorObjeto"></label>
@@ -32,7 +33,7 @@
             <input type="text" id="nome2" placeholder="Nome usuario">
         </p>
         <p>
-            <input type="button" onclick="criarObjetoFuncao(document.getElementById('nome2').value)" 
+            <input type="button" onclick="criarObjetoFuncao(document.getElementById('nome2').value)"
                 value="Objeto com função">
         </p>
         <p>
@@ -40,29 +41,53 @@
         </p>
     </div>
     <div>
-            <label>Merge de objetos</label>
-            <p>
-                <label>Objeto 1:</label>
-                <label id="objeto1"></label>
-            </p>
-            <p>
-                <label>Objeto 2:</label>
-                <label id="objeto2"></label>
-            </p>
-            <p>
-                <input type="button" onclick="mergeObjects()" 
-                    value="Merge objects">
-            </p>
-            <p>
-                <label id="mergeObjeto"></label>
-            </p>
-        </div>    
-        <div>
-                <label>Object com Get & Set</label>
-                <p>
-                    <input type="button" onclick="objectGetSet()" 
-                        value="Get and Set">
-                </p>
-            </div>            
+        <label>Merge de objetos</label>
+        <p>
+            <label>Objeto 1:</label>
+            <label id="objeto1"></label>
+        </p>
+        <p>
+            <label>Objeto 2:</label>
+            <label id="objeto2"></label>
+        </p>
+        <p>
+            <input type="button" onclick="mergeObjects()" value="Merge objects">
+        </p>
+        <p>
+            <label id="mergeObjeto"></label>
+        </p>
+    </div>
+    <div>
+        <label>Object com Get & Set</label>
+        <p>
+            <input type="button" onclick="objectGetSet()" value="Get and Set">
+        </p>
+    </div>
+    <div>
+        <label>Objeto com destruct - Destruct simples, Destruct de objetos, Destruct com valor padrão</label>
+        <p>
+            <label>Valor 1:</label>
+            <input id="item1" type="text" placeholder="Valor 1">
+        </p>
+        <p>
+            <label>Valor 2:</label>
+            <input id="item2" type="text" placeholder="Valor 2">
+        </p>
+        <p>
+            <label>Valor 3:</label>
+            <input id="item3" type="text" placeholder="Valor 3">
+        </p>
+
+        <p>
+            <input type="button" onclick="destructObject(
+                document.getElementById('item1').value,
+                document.getElementById('item2').value,
+                document.getElementById('item3').value)" value="Destruct object">
+        </p>
+        <p>
+            <label id="valorObjetoDestruct"></label>
+        </p>
+    </div>
 </body>
+
 </html>
