@@ -147,3 +147,66 @@ function destructObject(valor1, valor2, valor3){
 }
 
 destructObject('A', 'B');
+
+
+var destructObject = {
+    valor1: 'valor1',
+    valor2: 'valor2',
+    valor3: 'valor3'
+};
+
+function destructObjectNovo({valor1, valor2, valor3, valor4 = 'valor4'}){
+    var valores = `${valor1} - ${valor2} - ${valor3} - ${valor4}`;
+   
+    console.log(valores);
+}
+
+destructObjectNovo(destructObject);
+
+
+
+var objectIteration = {
+    valor1: 'valor1',
+    valor2: 'valor2',
+    valor3: 'valor3'
+};
+
+function iteration(objectIteration){
+    var props = Object.keys(objectIteration);
+    console.log(props);
+    
+    var valor="";
+    var valorObjeto = "";
+
+    for(var i = 0; i < props.length; i++){
+        valor = valor + `${props[i]} - `;
+        valorObjeto = valorObjeto + `${objectIteration[props[i]]} - `;
+    }
+
+    console.log("VALOR :" + valor);
+    console.log("VALOR_OBJETO :" + valorObjeto);
+
+    var valorOf="";
+    var valorObjetoOf = "";
+    for(var prop of props){
+        valorOf = valor + `${props[i]} - `;
+        valorObjetoOf = valorObjeto + `${objectIteration[props[i]]} - `;
+    }
+
+    console.log("VALOR_OF:" + valorOf);
+    console.log("VALOR_OBJETO_OF :" + valorObjetoOf);
+
+
+    var valorIn="";
+    var valorObjetoIn = "";
+    for(var prop2 in objectIteration){
+        valorIn = valor + `${objectIteration[prop2]} - `;
+        valorObjetoIn = valorObjeto + `${objectIteration[prop2]} - `;
+    }
+
+    console.log("VALOR_IN:" + valorIn);
+    console.log("VALOR_OBJETO_IN :" + valorObjetoIn);
+}
+
+iteration(objectIteration);
+
