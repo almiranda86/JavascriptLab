@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Functions</title>
+    <script type="text/javascript" src="js/functions.js"></script>
+</head>
+
+<body>
+    <h3>Todas as funções estão escrevendo no Console</h3>
+    <br />
+    <div>
+        <p>
+            Logando o objeto primario com this
+        </p>
+        <div>
+            <label>Por objeto primario, entendendasse que estamos falando do proprio Window,
+                do escopo global da aplicação</label>
+            <p>
+                <input type="button" value="log global this" onclick="globalThis()">
+            </p>
+        </div>
+    </div>
+    <div>
+        <p>
+            Logando o objeto atraves de um New em um Object
+        </p>
+        <div>
+            <p>
+                <input type="button" value="new object" onclick="newObject()">
+            </p>
+        </div>
+    </div>
+    <div>
+        <p>
+            Utilizando Call
+        </p>
+        <div>
+            <label>Utilizando o Call, podemos informar ainda parametro ao metodo call, parametros estes
+                que serão utilizados pela função que executa o 'call'.
+                O primeiro parametro obrigatoriamente é o this.
+            </label>
+            <p>
+                <input type="button" value="using call" onclick="usingCall()">
+            </p>
+        </div>
+    </div>
+    <div>
+        <p>
+            Utilizando Apply
+        </p>
+        <div>
+            <label>Utilizando o Apply, podemos informar ainda parametro ao metodo apply, parametros estes
+                que serão utilizados pela função que executa o 'Apply'.
+                O primeiro parametro obrigatoriamente é o this.
+                O que difere o Apply do Call é a forma de informar o parametros da função, após o this.
+                No apply, os parametros são informados como um array.
+            </label>
+            <p>
+                <input type="button" value="using call" onclick="usingCall()">
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
