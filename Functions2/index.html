@@ -51,7 +51,7 @@
             Utilizando Apply
         </p>
         <div>
-            <label>Utilizando o Apply, podemos informar ainda parametro ao metodo apply, parametros estes
+            <label>Utilizando o Apply, podemos informar ainda parametros ao metodo apply, parametros estes
                 que serão utilizados pela função que executa o 'Apply'.
                 O primeiro parametro obrigatoriamente é o this.
                 O que difere o Apply do Call é a forma de informar o parametros da função, após o this.
@@ -59,6 +59,36 @@
             </label>
             <p>
                 <input type="button" value="using call" onclick="usingApply()">
+            </p>
+        </div>
+    </div>
+    <div>
+        <p>
+            Utilizando Bind
+        </p>
+        <div>
+            <label>Utilizando o Bind, podemos informar ainda parametros ao metodo bind, parametros estes
+                que serão utilizados pela função que executa o 'Bind'.
+                O primeiro parametro obrigatoriamente é o this.
+                O Bind é muito parecido com o Call, porem, ao inves de invocar diretamente a função,
+                o bind retorna a função, que pode ser executada mais tarde, utilizando os parametros informados.
+            </label>
+            <p>
+                <input type="button" value="using bind" onclick="usingBind()">
+            </p>
+        </div>
+    </div>
+    <div>
+        <p>
+            Arrow Functions
+        </p>
+        <div>
+            <label>
+                São funções, sem this. Sem contexto interno.
+                Ela herda o contexto de onde se encontra, mas não consegue modificar o mesmo.
+            </label>
+            <p>
+                <input type="button" value="using arrow function" onclick="usingArrowFunction()">
             </p>
         </div>
     </div>
