@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Functions</title>
+    <script type="text/javascript" src="js/closures.js"></script>
+</head>
+
+<body>
+    <h3>Todas as funções estão escrevendo no Console</h3>
+    <br />
+    <div>
+        <p>
+            Closures
+        </p>
+        <label>
+            Closures possuem duas caracteristicas importantes:
+            <br />
+            A primeira é tirar vantagem do Lexical Scope.
+            Que no caso, é a habilidade de uma função javascript enxergar as variaveis vindas de um escopo pai.
+            <br />
+            A segunda é a memorização do escopo de onde a variavel foi criada
+        </label>
+    </div>
+    <div>
+        <p>
+            A primeira caracteristica, de escopo lexico, pode ser notada neste exemplo.
+        </p>
+        <p>
+            Aqui, escrevemos o seguinte codigo:
+        </p>
+        <p>
+            <i>
+                <b>
+                    function imprimeValor(){
+                    let nome = 'Jose';
+                    return function(){
+                    return nome;
+                    }
+                    }
+
+                    var fn = imprimeValor();
+                    console.log(fn());
+                </b>
+            </i>
+        </p>
+        <p>
+            Neste exemplo, a variavel nome, declarada na função imprimeValor, pode ser acessada normalmente
+            na função anonima.
+            Isso mostra o funcionamento do escopo lexico.
+        </p>
+        <p>
+            A segunda caracteristica, memorização, pode ser notada no mesmo exemplo.
+        </p>
+        <p>
+            Quando a função imprimeValor é executada, a variavel nome, declarada no escopo dela, permanece "em memoria",
+            permitindo que novas execuções tragam o valor que a mesma recebeu na execução original.
+            Seu escopo é memorizado, e pode ser resgatado em chamadas futuras.
+        </p>
+        <p>
+            Outra caracteristica importante de closure, é o encapsulamento de valores.
+            Conforme demonstrado pelo codigo, quando declaramos uma função, dentro de outra, mas não expomos por
+            return, ela se torna privada, existindo apensar dentro do escopo da primeira função.
+            <br />
+            <i>
+                <b>
+                    function minhaBiblioteca(){
+                    function auxiliar(valor){
+                    return 10 + valor;
+                    }
+                    return{
+                    add5(){
+                    return auxiliar(5);
+                    },
+                    add7(){
+                    return auxiliar(7);
+                    }
+                    }
+                    }
+                </b>
+            </i>
+            <br />
+            Neste exemplo, a função auxiliar só existe dentro do escopo da função minhaBiblioteca
+        </p>
+        <p>
+            Outra caracteristica do closure, é ajudar a evitar funções anonimas.
+        </p>
+        <p>
+            Neste exemplo, a função inicializa, atraves de um setTimeout invoca a função imprimeNome.
+            Porem, o setTimeout espera uma função como seu primeiro parametro, deste modo, dentro da função
+            imprimeNome, usamos como retorno uma função anonima, e atraves do closure, a variavel nome, que foi
+            criada no escopo da função imprimeNome é memorizada e utilizada na função anonima.
+        </p>
+        <p>
+            <i>
+                <b>
+                    function imprimeNome(nome){
+                    return function(){
+                    console.log(nome, 'Abadaba');
+                    }
+                    }
+                    <br />
+                    function inicializa(){
+                    let nome = 'Jose';
+                    setTimeout(imprimeNome(nome), 1000)
+                    }
+
+                </b>
+            </i>
+        </p>
+        <p>
+            Este exemplo poderia ser resolvi atraves de outra maneira:
+            Porem, desta forma, iriamos utilizar uma função anonima, em um local indesejado.
+            Por isso, utilizamos os conceitos de closure para produzir a nova função.
+            <br />
+            <i>
+                <b>
+                    function inicializa(){
+                    let nome = 'Jose';
+                    setTimeout(function(){
+                    console.log(nome);
+                    }, 1000)
+                    }
+                </b>
+            </i>
+        </p>
+    </div>
+</body>
+
+</html>
