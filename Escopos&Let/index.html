@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Functions</title>
+    <script type="text/javascript" src="js/escopos.js"></script>
+</head>
+
+<body>
+    <h3>Todas as funções estão escrevendo no Console</h3>
+    <br />
+    <p>
+        Uma demonstração de como funcionam os escopos.
+        Escopos definem a acessibilidade dentro do javascript.
+        Window é o objeto maior, o escopo mais acessivel dentro da aplicação web.
+    </p>
+    <div>
+        <label>Escopo global:</label>
+        <label>Variavel global sendo acessada por uma função:</label>
+        <p>
+            <input type="button" onclick="escopoGlobal()" value="Escopo global">
+            <input type="text" id="global" readonly='readonly'>
+        </p>
+    </div>
+    <div>
+        <label>Escopo local:</label>
+        <label>Variavel dentro de uma função, só pode ser vista dentro da função:</label>
+        <p>
+            <input type="button" onclick="escopoFuncao()" value="Escopo local">
+            <input type="text" id="local" readonly='readonly'>
+        </p>
+    </div>
+    <div>
+        <label>Escopo local sem var:</label>
+        <label>Variavel dentro de uma função, porem sem a palavra var, pode ser vista dentro e fora da função:</label>
+        <label>Declarar uma variavel sem var, insere a mesma dentro do contexto de window:</label>
+        <p>
+            <input type="button" onclick="escopoLocalEGlbal()" value="Escopo local">
+            <input type="text" id="_local" readonly='readonly'>
+        </p>
+    </div>
+    <br />
+    <p>
+        Uma demonstração de como funcionam os dinamicos.
+    </p>
+    <div>
+        <label>Escopo dinamico:</label>
+        <label>Uma variavel dinamica, só é identificada durante sua execução...</label>
+        <label>Sendo assim, o this de cada contexto sera definido durante a execução.</label>
+        <label>E se nenhum contexto for informado, o contexto sera o proprio Window</label>
+    </div>
+    <p>
+
+    </p>
+    <div>
+        <label>Escopo lexical:</label>
+        <label>Dentro do scopo lexical, o valor ja esta definido, e não precisa ser descoberto.</label>
+    </div>
+    <p></p>
+    <div>
+        <label>Escopo de bloco:</label>
+        <label>Nos ainda podemos criar variaveis com a palavra let, o que reduz ainda mais o alcance do escopo</label>
+        <label>let cria um escopo de bloco, onde estas variaveis funcionam somente dentro
+            daquele area onde ela foi declarada</label>
+        <label>Outra particularidade, é a questão quanto a redeclarar valores em variaveis utilizando let...</label>
+        <label>uma variavel, uma vez declarada com a palavra let, não pode ser redeclarada, utilizando novamente a
+            palavra let...</label>
+        <label>mas, podemos redefinida sem o uso da mesma.</label>
+        <label>Se tentarmos redeclarar a variavel utilizando let, ira ocorrer um erro no javascript.</label>
+        <label>A unica forma de fazer isso, é atraves da criação de novos blocos dentro da execução, dentro de novos
+            escopos.</label>
+    </div>
+</body>
+
+</html>
