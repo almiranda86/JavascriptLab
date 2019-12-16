@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Functions</title>
+    <script type="text/javascript" src="js/hoisting.js"></script>
+</head>
+
+<body>
+    <h3>Alguns exemplos podem ser impressos no Console</h3>
+    <div>
+        <h3>
+            Hoisting
+        </h3>
+    </div>
+    <div>
+        <p>
+            Hoisting, é a ação de movimentação das variaveis e funções ao topo do escopo ao qual elas pertencem, pela
+            engine do javascript.
+            <br />
+            Sendo que isso não se aplica exatamente desta forma, com declarações de <code>let</code> e declarações de
+            função com o uso de <code>var</code>
+        </p>
+        <p>
+            Um dos pontos negativos sobre hoisting, é a questão da organização dos codigos.
+            Quando a pessoa acaba abusando do uso, a leitura do codigo pode ficar comprometida.
+        </p>
+        <p>
+            Um dos pontos positivos, é quando a pessoa consegue organizar de modo legivel o codigo, deixando ele com uma
+            leitura mais facil.
+            <br><br>
+            <code>
+                function calcula(){
+                    <br>
+                    return geraResultado();
+                    <br>
+                    /*Logica*/
+                    <br>
+                    function soma(a, b){
+                        return a + b;
+                    }
+                    <br>
+                    function geraResultado(){
+                        return soma(10, 5) / 3;
+                        <br>
+                    }
+                    <br>
+                }
+            </code>
+            <br>
+            Neste caso, assim que batemos o olho na função, ja percebemos que ela ira retorna uma outra função, e lendo
+            função de retorno, vemos que esta invoca um outra.
+            <br>
+            Porem, apesar da complexidade aparente, percebe-se que, o codigo esta bem estruturado, e de facil
+            compreensão.
+        </p>
+    </div>
+    <div>
+        <p>
+            Quando queremos acessar o valor de uma variavel, sem ter declarado a mesma, ocorre um erro.
+            <br>
+            <code>
+                console.log(a);
+            </code>
+            <br>
+            <code>
+                hoisting.js:1 Uncaught ReferenceError: a is not defined
+                at hoisting.js:1
+            </code>
+        </p>
+        <p>
+            Porem, se declararmos a variavel, mesmo que apos a chamada, iremos notar que o erro some, e iremos
+            receber uma notificação de undefined.
+            <br>
+            <code>
+                console.log(a);
+                <br>
+                var a;
+            </code>
+            <br>
+            <code>
+               > undefined
+            </code>
+        </p>
+        <p>
+            Isso ocorre, pois o hoisting, move a declaração de <code>var a</code> para antes de sua chamada.
+            <br>
+            Seria como se o codigo tivesse sido escrito assim:
+            <br>
+            <code>
+                var a;
+                <br>
+                console.log(a);
+            </code>
+        </p>
+        <p>
+            Porem, se atribuirmos o valor a varivel, apos a chamada, ainda receberemos a saida como undefined, pois
+            apenas a declaração da variavel é movida para o topo do escopo.
+            <br>
+            No caso, seria algo asssim:
+            <br><br>
+            Atribuição do valor
+            <br>
+            <code>
+                console.log(a);
+                <br>
+                var a = 123;
+                <br>
+                > undefined
+            </code>
+            <br><br>
+            Hoisting
+            <br>
+            <code>
+                var a;
+                <br>
+                console.log(a);
+                <br>
+                a = 123;
+                <br>
+                > undefined
+            </code>
+        </p>
+        <p>
+            Para que o valor fosse visivel, teriamos que chamar o <code>console.log</code> apos a atribuição.
+        </p>
+    </div>
+    <div>
+        <p>
+            Ja com o uso do <code>let</code> e <code>const</code>, quando escrevemos o codigo, a situação é um pouco
+            diferente.
+            <br>
+            <code>
+                console.log(b);
+                <br>
+                let b = 11;
+                <br>
+                > hoisting.js:5 Uncaught ReferenceError: Cannot access 'b' before initialization
+                at hoisting.js:5
+            </code>
+            <br><br>
+            Dentro do uso da palavra <code>let</code>, a engine tem a visibilidade da varivel, porem, não consegue mover
+            a mesma para o escopo maior, ocasionando este erro, que tambem é conhecido na comunidade como Temporal Dead
+            Zone.
+        </p>
+    </div>
+    <div>
+        <p>
+            Quando atribuimos uma função a uma variavel, e a chamamos antes da declaração, tambem iremos receber um
+            erro.
+            <br><br>
+            <code>
+                console.log(soma(10,5));
+                <br>
+                var soma =  function(x, y){
+                    return x + y;
+                } 
+                <br>
+                > hoisting.js:8 Uncaught TypeError: soma is not a function
+                at hoisting.js:8               
+            </code>
+            <br><br>
+            Isso ocorre, pois o hoisting realizou a seguinte ação:
+            <br><br>
+            <code>
+                var soma;
+                <br>
+                console.log(soma(10,5));
+                <br>
+                soma =  function(x, y){
+                    return x + y;
+                } 
+                <br>
+                > hoisting.js:8 Uncaught TypeError: soma is not a function
+                at hoisting.js:8               
+            </code>
+            <br>
+        </p>
+        <p>
+            Agora, quando utilizamos a declaração de function, o hoisting ocorre, assim como quando utilizamos o var.
+            <br><br>
+            Esta declaração, irá sofrer o hoisting, e passará disso:
+            <br>
+            <code>
+                console.log(soma(10,5));
+                <br>
+                function soma(x,y){
+                    return x + y;
+                }
+            </code>
+            <br><br>
+            Para isso:
+            <br>
+            <code>
+                function soma(x,y){
+                    return x + y;
+                }
+                <br>
+                console.log(soma(10,5));
+            </code>
+        </p>
+    </div>
+</body>
+
+</html>
