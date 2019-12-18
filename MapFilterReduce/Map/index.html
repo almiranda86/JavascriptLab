@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Functions</title>
+    <script type="text/javascript" src="js/map.js"></script>
+</head>
+
+<body>
+    <h3>Map</h3>
+    <div>
+        <p>
+            Map é uma função, de iteração em arrays, que espera uma função de callback, função esta que pode ser
+            utilizada para manipular o array onde ela esta iterando.
+            <br>
+            Neste exemplo, vamos iterar sobre um array de numero, e multiplicar por 2.
+            <br>
+        </p>
+        <p>
+            Primeiro, um exemplo de como seria, do modo tradicional com um <code>for</code>
+            <br><br>
+            <code>
+                const numeros = [2,3,6,5,10];
+                <br>
+                let novoArrayNumeros = [];
+                <br>
+                for(let i = 0; i < numeros.length; i++){
+                <br>                
+                    novoArrayNumeros.push(numeros[i]*2);
+                    <br>
+                }
+            </code>
+            <br><br>
+            Acima temos a iteração comum, com um laço <code>for</code>.
+            <br>
+            Podemos notar que, para atingir nosso objetivo, foi necessario criar a variavel novoArrayNumeros fora do
+            escopo de execução do <code>for</code>, para que assim fosse possivel, iterar, calcular e criar uma nova
+            saída.
+        </p>
+        <p>
+            Agora, um exemplo com o <code>map</code>
+            <br><br>
+            <code>
+                const novoArrayNumerosMap = numeros.map(function(numero){
+                    <br>
+                    return numero * 2;
+                    <br>
+                });
+            </code>
+            <br><br>
+            Acima, tem a mesma iteração, porem utilizando o <code>map</code>.
+            Como a função <code>map</code> pede uma função de <code>callback</code> como parametro, e sempre ira
+            retornar um array, nós realizamos a transformação do valor, na função de <code>callback</code>, e retornamos
+            os novos valores, para o novo array.
+            <br>
+            Deste forma, ambos arrays coexistem, e nenhuma variavel foi criada fora do escopo para atender a esse
+            cenario.
+            <br>
+            Outro detalhe, é o fato de que utilizando o <code>map</code> para atender a este cenario, nosso
+            desenvolvimento ficou mais legivel e limpo.
+            <br><br>
+            Porem, existem ainda outras formas de deixar esta implementação ainda mais compacta, se utilizarmos outros
+            recursos qud o Javascript fornece.
+            <br><br>
+            <code>
+                const novoArrayArrow = numeros.map(numero => numero * 2);
+            </code>
+            <br><br>
+            Acima, temos a mesma implementação, utilizando alem do <code>map</code>, uma arrow function.
+            <br>
+            Desse modo, conseguimos realizar a mesma iteração, em apenas uma linha.
+        </p>
+    </div>
+    <div>
+        <label>
+            <a href="../index.html">Voltar</a>
+        </label>
+    </div>
+</body>
+
+</html>

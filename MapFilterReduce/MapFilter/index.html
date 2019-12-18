@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Functions</title>
+    <script type="text/javascript" src="js/mapfilter.js"></script>
+</head>
+
+<body>
+    <h3>Map + Filter</h3>
+    <div>
+        <p>
+            Ainda a titulo de curiosidade e demonstração de flexibilidade das funções, podemos utilizar o
+            <code>map</code> e o <code>filter</code> juntos, para atingir um objetivo.
+            <br>
+            Neste exemplo, vamos iterar sobre um array de numeros, filtrar os multiplos de 2 e multiplica-los por 2.
+            <br>
+        </p>
+        <p>
+            <code>
+                const numeros = [2,3,6,5,10];<br>
+                const arrayMapFilter = numeros<br>
+                .filter(numero => numero % 2 === 0)<br>
+                .map(numero => numero * 2);
+            </code>
+            <br><br>
+            Aqui, como mencionado, estamos iterando sob um array.
+            <br>
+            A partir disso, filtramos os numeros que são multiplos de 2, atraves da função <code>filter</code>.
+            <br>
+            Os numeros que atenderam a esta validação, são então passados a ao <code>map</code>, que então itera sob
+            eles, e realiza a sua ação, multiplicando os valores.
+            <br>
+            Como o <code>map</code> é a ultima função chamada, o retorno é um novo array, contendo apenas os numeros
+            filtrados pela ação do <code>filter</code> e posteriosmente multiplicados pela ação do <code>map</code>
+        </p>
+    </div>
+    <div>
+        <label>
+            <a href="../index.html">Voltar</a>
+        </label>
+    </div>
+</body>
+
+</html>
