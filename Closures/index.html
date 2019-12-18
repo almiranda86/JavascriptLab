@@ -31,19 +31,23 @@
             Aqui, escrevemos o seguinte codigo:
         </p>
         <p>
-            <i>
-                <b>
-                    function imprimeValor(){
-                    let nome = 'Jose';
-                    return function(){
-                    return nome;
-                    }
-                    }
-
-                    var fn = imprimeValor();
-                    console.log(fn());
-                </b>
-            </i>
+            <code>
+                function imprimeValor(){
+                <br>
+                let nome = 'Jose';
+                <br>
+                return function(){
+                <br>
+                return nome;
+                <br>
+                }
+                <br>
+                }
+                <br>
+                var fn = imprimeValor();
+                <br>
+                console.log(fn());
+            </code>
         </p>
         <p>
             Neste exemplo, a variavel nome, declarada na função imprimeValor, pode ser acessada normalmente
@@ -62,25 +66,33 @@
             Outra caracteristica importante de closure, é o encapsulamento de valores.
             Conforme demonstrado pelo codigo, quando declaramos uma função, dentro de outra, mas não expomos por
             return, ela se torna privada, existindo apensar dentro do escopo da primeira função.
-            <br />
-            <i>
-                <b>
-                    function minhaBiblioteca(){
+            <br><br>
+            <code>
+                function minhaBiblioteca(){
+                    <br>
                     function auxiliar(valor){
+                    <br>
                     return 10 + valor;
+                    <br>
                     }
+                    <br>
                     return{
+                    <br>
                     add5(){
+                    <br>
                     return auxiliar(5);
+                    <br>
                     },
+                    <br>
                     add7(){
+                    <br>
                     return auxiliar(7);
+                    <br>
                     }
                     }
                     }
-                </b>
-            </i>
-            <br />
+            </code>
+            <br><br>
             Neste exemplo, a função auxiliar só existe dentro do escopo da função minhaBiblioteca
         </p>
         <p>
@@ -93,37 +105,32 @@
             criada no escopo da função imprimeNome é memorizada e utilizada na função anonima.
         </p>
         <p>
-            <i>
-                <b>
-                    function imprimeNome(nome){
-                    return function(){
-                    console.log(nome, 'Abadaba');
-                    }
-                    }
-                    <br />
-                    function inicializa(){
-                    let nome = 'Jose';
-                    setTimeout(imprimeNome(nome), 1000)
-                    }
-
-                </b>
-            </i>
+            <code>
+                function imprimeNome(nome){<br>
+                return function(){<br>
+                console.log(nome, 'Abadaba');<br>
+                }
+                }
+                <br><br>
+                function inicializa(){<br>
+                let nome = 'Jose';<br>
+                setTimeout(imprimeNome(nome), 1000)<br>
+                }
+            </code>
         </p>
         <p>
             Este exemplo poderia ser resolvi atraves de outra maneira:
             Porem, desta forma, iriamos utilizar uma função anonima, em um local indesejado.
             Por isso, utilizamos os conceitos de closure para produzir a nova função.
-            <br />
-            <i>
-                <b>
-                    function inicializa(){
-                    let nome = 'Jose';
-                    setTimeout(function(){
-                    console.log(nome);
-                    }, 1000)
-                    }
-                </b>
-            </i>
+            <br><br>
+            <code>
+                function inicializa(){<br>
+                let nome = 'Jose';<br>
+                setTimeout(function(){<br>
+                console.log(nome);<br>
+                }, 1000)<br>
+                }
+            </code>
         </p>
     </div>
 </body>

@@ -15,9 +15,9 @@
     </p>
     <div>
         <p>Criamos uma constante, declarando um variavel atraves da palavra const.
-            <br/>
+            <br />
             As constantes são valores imutaveis durante todo o ciclo da aplicação.
-            <br/>
+            <br />
             Assim como em let, a constante tambem atua no escopo de bloco. Sendo assim, ela existe dentro
             do escopo do bloco em que foi definida.
         </p>
@@ -25,7 +25,7 @@
             <input type="button" onclick="introConstFn()" value="Introdução a Constantes">
             <input type="text" readonly="readonly" id="introConst" placeholder="introdução"></label>
         </p>
-        
+
     </div>
     <div>
         <p>
@@ -33,27 +33,27 @@
         </p>
         <p>
             Aqui, temos uma constante definida dentro de um bloco.
-            <br/>
+            <br />
             <code>
-                if(true){
-                    const nome = "Andre";
-                    console.log(nome);
+                if(true){<br>
+                    const nome = "Andre";<br>
+                    console.log(nome);<br>
                 }
             </code>
         </p>
         <p>
             Se tentarmos invocar esta constante fora do bloco em que foi criado, teremos um erro de interpretação.
-            <br/>
+            <br />
             <code>
-                if(true){
-                    const nome = "Andre";
-                    console.log(nome);
-                }
-                console.log("Constante dentro de bloco, sendo chamada fora dele");
+                if(true){<br>
+                    const nome = "Andre";<br>
+                    console.log(nome);<br>
+                }<br>
+                console.log("Constante dentro de bloco, sendo chamada fora dele");<br>
                 console.log(nome);
             </code>
-       </p>
-    </div> 
+        </p>
+    </div>
     <div>
         <p>
             Redeclaração e Reatribuição
@@ -66,73 +66,75 @@
         </p>
         <p>
             Quando criamos uma variavel com <code>var</code>, podemos redeclarar e redefinir seu valor.
-            <br/>
+            <br />
             <code>
-                var xpto = 'xpto';
+                var xpto = 'xpto';<br>
                 var xpto = 'AAA';
             </code>
         </p>
         <p>
             Quando criamos uma variavel com <code>let</code>, podemos redefinir, porem não redeclarar.
-            <br/>
+            <br />
             <code>
-                let xpto = 'xpto';
+                let xpto = 'xpto';<br>
                 xpto = 'AAA';
             </code>
         </p>
         <p>
-            Ja quando criamos uma variavel com <code>const</code>, não podemos nem redeclarar nem redefinir, isso dentro do mesmo escopo.
-            <br/>
+            Ja quando criamos uma variavel com <code>const</code>, não podemos nem redeclarar nem redefinir, isso dentro
+            do mesmo escopo.
+            <br>
             <code>
-                const xpto = 'xpto';
+                const xpto = 'xpto';<br>
                 const xpto = 'AAA';
             </code>
-            <br/>
+            <br><br>
             Porem, em escopos diferentes, essa redeclaração é possivel.
-            <br/>
+            <br />
             <code>
-                if(true){
-                    const xpto = 'xpto';
-                }
+                if(true){<br>
+                    const xpto = 'xpto';<br>
+                }<br>
                 const xpto = 'AAA';
             </code>
         </p>
         <p>
             Existe uma particularidade dentro do javascript, que quando voce cria uma constante,
-            como um objeto ou um array, voce pode modificar suas propriedades e valores, desde que, 
+            como um objeto ou um array, voce pode modificar suas propriedades e valores, desde que,
             a constante em não seja redeclarada.
             <br>
             <code>
                 const dominios = ['JS', 'Python', 'Go'];
                 <br>
-                (3) ["JS", "Python", "Go"]
+                > (3) ["JS", "Python", "Go"]
             </code>
-            <br>
+            <br><br>
             <code>
                 dominios[1] = 'C#';
                 <br>
-                (3) ["JS", "C#", "Go"]
-            </code>    
-            <br>
+                >(3) ["JS", "C#", "Go"]
+            </code>
+            <br><br>
             <label>
                 Agora um exemplo com objetos em constantes
             </label>
             <br>
             <code>
-                const user = {
-                    nome: 'Andre',
-                    idade: 33
+                const user = {<br>
+                    nome: 'Andre',<br>
+                    idade: 33<br>
                 };
                 <br>
                 nome: "Andre", idade: 33}
-            </code>  
+            </code>
             <br>
             <code>
                 user.cidade = 'São Paulo';
                 <br>
                 {nome: "Andre", idade: 33, cidade: "São Paulo"}
-            </code>      
+            </code>
         </p>
-    </div>   
+    </div>
 </body>
+
 </html>
