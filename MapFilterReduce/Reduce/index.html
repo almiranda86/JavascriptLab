@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Functions</title>
+    <script type="text/javascript" src="js/reduce.js"></script>
+</head>
+
+<body>
+    <h3>Reduce</h3>
+    <div>
+        <p>
+            Reduce é uma função, de iteração em arrays, que espera um função de callback e um parametro inicial.
+            <br>
+            A função de callback, espera dois parametros, um que ira agregar os valores iterados, e outro que sera o
+            valor corrente da iteração.
+            <br>
+            O valor inicial, é um valor que será utilizando no momento do retorno. Com o exemplo isso ficara mais facil
+            de entender.
+            <br>
+            A diferença desta função para o <code>map</code> e para o <code>filter</code>, é que o <code>reduce</code>
+            pode retornar meio que qualquer coisa, por exemplo, um numero, uma string, um array ou mesmo um objeto.
+            <br>
+            Utilizaremos como exemplo, a iteração sob um array de numero e um objeto.
+            <br>
+        </p>
+    </div>
+    <div>
+        <p>
+            Primeiro, uma iteração em um array de numero, do modo tradicional com um <code>for</code>
+            <code>
+                const numeros = [2,3,6,5,10];
+                <br>
+                let soma = 0;
+                <br>
+                for(let i = 0; i < numeros.length; i++){
+                    <br>
+                    soma = soma + numeros[i]
+                    <br>
+                }
+                <br>
+                > Iteração For: 26
+            </code>
+            <br><br>
+            Podemos notar que, para atingir nosso objetivo, foi necessario criar a variavel soma fora do
+            escopo de execução do <code>for</code>, para que assim fosse possivel, iterar, calcular e criar uma nova
+            saída.
+        </p>
+        <p>
+            Agora, a mesma iteração com o <code>reduce</code>
+            <br><br>
+            <code>
+                let somaReduce = numeros.reduce(function(soma, i){
+                <br>            
+                    return soma + i
+                <br>                    
+                },0);
+                <br>
+                > Iteração Reduce: 26
+            </code>
+            <br><br>
+            Como podemos notar, a função que é o primeiro parametro do <code>reduce</code>, espera dois parametros.
+            Utilizei os mesmos nomes do laço <code>for</code> para deixar claro quais suas funções reais.
+            Deste modo, conseguimos somar os valores, e retornar a soma.
+            <br>
+            Se, no parametro inicial, tivessemos utilizado um -10, o valor retornado, seria a soma -10.
+            <br><br>
+            <code>
+                let somaReduce = numeros.reduce(function(soma, i){
+                <br>            
+                    return soma + i
+                <br>                    
+                }, -10);     
+                <br>
+                > Iteração Reduce: 16           
+            </code>
+        </p>
+    </div>
+    <div>
+        Agora, vamos iterar sob um array de objetos.
+        <br>
+        Um obejto simples, representando uma pessoa, com Nome e Idade.
+        <br>
+        <code>
+            const pessoas = [
+            <br>
+                {
+                    <br>
+                    nome:'Jose',
+                    <br>
+                    idade:27
+                    <br>
+                }
+                <br>
+            ]
+        </code>
+        <br><br>
+        Nosso objetivo, vai ser separar neste array as pessoas Maiores de idade, das Menores de idade.
+        <br>
+        Para isso, iremos utilizar o <code>reduce</code>.
+        <br><br>
+        <code>
+            const pessoasOrganizadas = pessoas.reduce(function(valorAcumulador, valorArray){
+                <br>
+                const propMaiorOuMenor = valorArray.idade >= 18 ? 'maiores' : 'menores';
+                <br>
+                valorAcumulador[propMaiorOuMenor].push(valorArray);
+                <br>
+                return valorAcumulador;
+                <br>
+            },{ maiores:[], menores:[] });            
+        </code>
+        <br><br>
+        Neste caso, vamos percorrer o array, e verificar quais pessoas tem idade menor ou igual a 18.
+        <br>
+        O objeto iterado, é representado pela propriedade <code>valorArray</code>.
+        <br>
+        Note que, dada a validação, estamos retornando os valores <i>maiores</i> ou <i>menores</i> para uma constante
+        auxiliar.
+        Estes nomes, são os mesmos das propriedades definidas como as existentes no parametro inicial do
+        <code>reduce</code>.
+        <br>
+        Conforme visto aqui, <code>{ maiores:[], menores:[] }</code>, definimos um objeto, com dois arrays vazios como o
+        objeto inicial da função.
+        <br>
+        Ao retornarmos a constante auxiliar o valor de <i>maiores</i> ou <i>menores</i>, estamos indicando a função, em
+        qual array do objeto inserir a pessoa identificada como Maior ou Menor de idade.
+        <br>
+        A propriedade <code>valorAcumulador</code> é quem detem as propriedades iniciais desde o inicio da execução,
+        sendo assim, ao fazermos isto: <code>valorAcumulador[propMaiorOuMenor].push(valorArray)</code>, estamos dizendo
+        ao <code>reduce</code> que acesse dentro do objeto inicial, a propriedade correspondente ao retorno da validação
+        <code>{ maiores:[], menores:[] }</code>, e adicione a esta propriedade o valor corrente da iteração.
+        <br>
+        Por fim, devemos retornar o parametro que acumula os valores <code>valorAcumulador</code>, para que este exista
+        na proxima iteração.
+        <br><br>
+        Com isso, temos o retorno esperado:
+        <br>
+        <code>
+            > Pessoas organizadas: <br>
+            {maiores: Array(5), menores: Array(3)}<br>
+            maiores: (5) [{…}, {…}, {…}, {…}, {…}]<br>
+            menores: (3) [{…}, {…}, {…}]<br>
+        </code>
+    </div>
+    <div>
+        <label>
+            <a href="../index.html">Voltar</a>
+        </label>
+    </div>
+</body>
+
+</html>
