@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Callbacks</title>
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+
+<body>
+    <h3>Alguns exemplos podem ser impressos no Console</h3>
+    <br />
+    <div>
+        <p>
+            Dentro do javascript, podemos ter problemas quantoa sincronização de chamadas de funções.
+        </p>
+        <p>
+            A exemplo disto, temos a seguinte chamada:
+        </p>
+        <code>
+            function obterUsuario(){
+                <br>
+                setTimeout(function(){
+                    <br>
+                    return {
+                        <br>
+                        id:1,
+                        <br>
+                        nome:'Jose',
+                        <br>
+                        dataNascimento: new Date()
+                        <br>
+                    }
+                    <br>
+                },1000)
+                <br>
+            }
+            <br>
+            const usuario = obterUsuario();
+            <br>
+            console.log('usuario', usuario);
+            <br>
+            > usuario undefined
+        </code>
+        <p>
+            Neste cenario, estamos tentando obter um usuario em um banco de dados, e apos isso, printar o mesmo no console do browser.
+            <br>
+            Porem, dada a maneira como as instruções são executadas, temos uma saida <i>undefined</i>, ja que o console log é executado antes do retorno da função.
+            <br>            
+        </p>
+        <p>
+            Para evitar este tipo de problema, podemos fazer uso de um padrão conhecido como <strong>Callback</strong>
+            <br>
+            Seguindo o conceito deste padrão, a mesma execução seria realizada da seguinte forma:
+        </p>
+        <code>
+            function obterUsuario(callback){
+                <br>
+                setTimeout(function(){
+                    <br>
+                    return callback(null, {
+                        <br>
+                        id:1,
+                        <br>
+                        nome:'Jose',
+                        <br>
+                        dataNascimento: new Date()
+                        <br>
+                    })
+                    <br>
+                },1000)
+                <br>
+            }
+            <br><br>
+            function resolverUsuario(erro, usuario){
+                <br>
+                console.log('usuario', usuario);
+                <br>
+            }
+            <br><br>
+            obterUsuario(resolverUsuario);
+            <br><br>
+            > usuario {id: 1, nome: "Jose", dataNascimento: Fri Jan 17 2020 10:07:36 GMT-0300 (Horário Padrão de Brasília)}
+        </code>
+        <p>
+            Fazendo uso deste padrão, conhecido como callback, podemos sincronizar de modo simplista os retornos para que seja possivel obter os retornos quando estes estiverem disponiveis.
+            <br>
+            Para isso, modificamos a função obterUsuario, informando a ela uma função que deve ser executada quando o resultado de sua execução estiver pronto.
+            <br>
+            Neste exemplo, o retorno da função setTimeout ira executar a função informada como callback, passando o resultado obtido, seja sucesso ou falha. 
+            <br>
+            Desta forma, ao fim do 1seg de espera, a função informada é chamada, nos forncendo o valor esperado.
+        </p>
+        <p>
+            Podemos ainda, ao inves de escrever dois trechos apartados de codigo, criar a função de callback diretamente no parametro: 
+        </p>
+        <code>
+            obterUsuario(function resolverUsuario(erro, usuario){
+                <br>
+                if(erro){
+                    <br>
+                    return;
+                    <br>
+                }else{
+                    <br>
+                    console.log('usuario', usuario);
+                    <br>
+                }
+                <br>
+            });
+
+        </code>
+        <p>
+            Dado este conceito, podemos fazer isso de modo que funções fiquem aninhadas, para ao final obtermos o resultado esperado.
+            <br>
+            Não é o modo mais bonito de se resolver o problema, mas é um modo.
+            <br>
+            Os encadeamentos das funções estão no arquivo js, pois seriam muito extensos para por aqui.
+        </p>
+        
+    </div>
+    
+</body>
+
+</html>
