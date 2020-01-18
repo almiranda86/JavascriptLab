@@ -1,0 +1,27 @@
+{
+    "floor":[
+        {
+            "name": "A",
+            "qtde":10
+        }
+    ],
+    "backroom":[
+        {
+            "name": "B",
+            "qtde":10
+        }
+    ],
+    "localStorage":[
+        {
+            "name": "C",
+            "qtde":10
+        }
+    ],
+    "armazen":[
+        {
+            "name": "D",
+            "qtde":10
+        }
+    ]
+    
+}
