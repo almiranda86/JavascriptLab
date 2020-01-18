@@ -1,12 +1,12 @@
 class Person{
     
-    constructor(name, ehEmpregado=false, ehGerente=falso, horas=40, dinheiro=0, listaCompras=[]){
-        this.name = name;
-        this.ehEmpregado = ehEmpregado;
-        this.ehGerente = ehGerente;
-        this.horas = horas;
-        this.dinheiro = dinheiro;
-        this.listaCompras = listaCompras;
+    constructor(builder){
+        this.name = builder.name;
+        this.ehEmpregado = builder.ehEmpregado;
+        this.ehGerente = builder.ehGerente;
+        this.horas = builder.horas || 0;
+        this.dinheiro = builder.dinheiro || 0;
+        this.listaCompras = builder.listaCompras || [];
     }
     
     toString(){

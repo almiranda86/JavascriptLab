@@ -1,10 +1,30 @@
-var Person = require('./Person');
+var PersonBuilder = require('./PersonBuilder');
 
 //empregados
-var empregado1 = new Person('Jose', true, true, 20);
-var empregado2 = new Person('Joao', true, false, 50);
-var empregado3 = new Person('Pedro', true, false);
+var empregado1 = new PersonBuilder('Jose')
+                    .makeEmployee()
+                    .makeManager(20)
+                    .build();
+
+var empregado2 = new PersonBuilder('Joao')
+                    .makeEmployee()
+                    .makePartTime()
+                    .build();
+
+var empregado3 = new PersonBuilder('Pedro')
+                    .makeEmployee()
+                    .build();
 
 //compradores
-var comprador1 = new Person('Maria', false, false, 0, 500, ['jeans','camiseta']);
-var comprador2 = new Person('Joaquina', false, false, 0, 1000);
+var comprador1 = new PersonBuilder('Maria')
+                    .withMoney(500)
+                    .withList(['jeans','camiseta'])
+                    .build();
+
+var comprador2 = new PersonBuilder('Joaquina')
+                    .withMoney(1000)
+                    .build();
+
+
+console.log(empregado1.toString());
+console.log(comprador1.toString());
