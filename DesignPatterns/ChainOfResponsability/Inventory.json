@@ -11,13 +11,13 @@
             "qtde":10
         }
     ],
-    "localStorage":[
+    "localStore":[
         {
             "name": "C",
             "qtde":10
         }
     ],
-    "armazen":[
+    "warehouse":[
         {
             "name": "D",
             "qtde":10

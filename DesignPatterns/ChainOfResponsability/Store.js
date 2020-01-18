@@ -1,13 +1,24 @@
+var Storage = require('./Storage');
+
 class Store {
 
     constructor(name, inventario=[]){
         this.name = name;
-        this.inventario = inventario;
+
+        var floor = new Storage('prateleira', inventario.floor);
+        var backroom = new Storage('estoque', inventario.backroom);
+        var localStore = new Storage('loja proxima', inventario.localStore);
+        var warehouse = new Storage('armazen', inventario.warehouse);
+
+        floor.setNext(backroom);
+        backroom.setNext(localStore);
+        localStore.setNext(warehouse);
+
+        this.storage = floor;
     }
 
     find(itemName){
-        var index = this.inventario.map(item => item.name).indexOf(itemName);
-        return this.inventario[index];
+        return this.storage.find(itemName);
     }
 }
 
