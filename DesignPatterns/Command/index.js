@@ -7,7 +7,7 @@ var rl = createInterface({
     output: process.stdout
 });
 
-console.log('create <filename> <text> | exit');
+console.log('create <filename> <text> | undo | redo | exit');
 
 rl.prompt();
 
@@ -25,6 +25,15 @@ rl.on('line', input => {
 
         case "create":
             conductor.run(new CreateCommand(fileName, text));
+            break;
+        case "history":
+            conductor.printHistory();
+            break;
+        case "undo":
+            conductor.undo();
+            break;
+        case "redo":
+            conductor.redo();
             break;
         default:
             console.log(`${commandText} command not found`);
