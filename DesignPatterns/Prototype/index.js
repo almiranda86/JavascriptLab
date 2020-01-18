@@ -1,17 +1,11 @@
-var Shopper = require('./Shopper');
+const cliente = require("./scout_prototype");
 
-var cliente1 = new Shopper('Jose');
-cliente1.addItemToList('A');
-cliente1.addItemToList('B');
-cliente1.addItemToList('C');
-cliente1.addItemToList('D');
+var cliente1 = cliente.clone();
+cliente1.name = 'Jose';
 cliente1.addItemToList('E');
 
-var cliente2 = new Shopper('Joao');
-cliente2.addItemToList('A');
-cliente2.addItemToList('B');
-cliente2.addItemToList('C');
-cliente2.addItemToList('D');
+var cliente2 = cliente.clone();
+cliente2.name = 'Joao';
 cliente2.addItemToList('F');
 
 console.log(`${cliente1.name}: ${cliente1.shoppingList}`);
