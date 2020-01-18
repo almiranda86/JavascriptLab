@@ -1,8 +1,7 @@
-var Shopper = require('./Shopper');
-var Employee = require('./Employee');
+const userFactory = require("./userFactory");
 
-var cliente = new Shopper('Jose', 100);
-var empregado = new Employee('Joao', 100, 'Faz coisas');
+var cliente = userFactory('Jose', 100);
+var empregado = userFactory('Joao', 100, 'empregado', 'Faz coisas');
 
 console.log(cliente.toString());
 console.log(empregado.toString());
