@@ -20,6 +20,16 @@ class Shopper{
     addItemToList(item){
         this._shoppingList.push(item);
     }
+
+    clone(){
+        var proto = Object.getPrototypeOf(this);
+        var clonado = Object.create(proto);
+
+        clonado._name = this._name;
+        clonado._shoppingList = [...this._shoppingList];
+
+        return clonado;
+    }
 }
 
 module.exports = Shopper;
