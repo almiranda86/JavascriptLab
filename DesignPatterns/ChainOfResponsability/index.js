@@ -3,7 +3,7 @@ var Inventory = require('./Inventory');
 
 var loja = new Store('LOJA', Inventory);
 
-var itemProcurado = 'A';
+var itemProcurado = 'D';
 
 var resultado = loja.find(itemProcurado);
 

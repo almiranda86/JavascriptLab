@@ -7,8 +7,8 @@ class Store {
 
         var floor = new Storage('prateleira', inventario.floor);
         var backroom = new Storage('estoque', inventario.backroom);
-        var localStore = new Storage('loja proxima', inventario.localStore);
-        var warehouse = new Storage('armazen', inventario.warehouse);
+        var localStore = new Storage('loja proxima', inventario.localStore, 1);
+        var warehouse = new Storage('armazen', inventario.warehouse, 5);
 
         floor.setNext(backroom);
         backroom.setNext(localStore);
