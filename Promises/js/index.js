@@ -69,7 +69,11 @@ usuarioPromisse
         });
 })
 .then(function(resultadoFinal){
-    console.log('Resultado usuario', resultadoFinal);
+    console.log(`
+        Nome: ${resultadoFinal.usuario.nome}
+        Telefone: (${resultadoFinal.telefone.ddd}) ${resultadoFinal.telefone.numero}
+        Endereco: Rua ${resultadoFinal.endereco.rua}, ${resultadoFinal.endereco.numero}
+    `);
 })
 .catch(function(erroUsuario){
     console.log('Erro usuario', erroUsuario);

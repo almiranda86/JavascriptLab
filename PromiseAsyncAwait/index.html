@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Promisses</title>
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+
+<body>
+    <h3>Alguns exemplos podem ser impressos no Console</h3>
+    <br />
+    <div>
+        <p>
+            Dentro do javascript, podemos ter problemas quantoa sincronização de chamadas de funções.
+        </p>
+        <p>
+            Como ja demonstrado, atraves de <i>Promises</i>, podemos lidar com estas sincronizações de modo mais eficiente, mas ainda assim, acabamos sujeitos ao <strong>Callback hell</strong>.
+            <br>
+            Afim de evitar esta situação, podemos utilizar um recurso, conhecido como Async/Await, dentro das chamada encadeadas.
+        </p>
+        <code>
+            main();
+            <br>
+            async function main(){
+                <br>
+                try{
+                    <br>
+                    console.time('medida-promise');
+                    <br>
+                    const usuario = await obterUsuario();
+                    <br>
+                    const telefone = await obterTelefoneUsuario(usuario.id);
+                    <br>
+                    const endereco = await obterEnderecoUsuario(usuario.id);
+                    <br>
+            
+                    console.log(`
+                    <br>
+                        Nome: ${usuario.nome}
+                        <br>
+                        Telefone: (${telefone.ddd}) ${telefone.numero}
+                        <br>
+                        Endereco: Rua ${endereco.rua}, ${endereco.numero}
+                        <br>
+                    `);
+                    <br>
+            
+                    console.timeEnd('medida-promise');
+                    <br>
+                }
+                <br>
+                catch(error){
+                    <br>
+                    console.log("Erro:", error);
+                    <br>
+                }
+                <br>
+            }
+            <br>
+            > Nome: Jose
+            <br>
+              Telefone: (11) 912345678    
+              <br>
+              Endereco: Rua hermanoteu, 11
+              <br>
+
+              medida-promise: 5020.511ms
+        </code>
+        <p>
+            Esta utilização se da, a partir de um metodo, no nosso caso criamos um metodo chamado <i>main</i>, precedido pela palavra reservada <i>async</i>.
+            <br>
+            Com a utilização desta palavra, o metodo se torna uma <i>Promise</i>, tendo acesso aos metodos <i>.then</i> e <i>.catch</i>
+            <br>
+            Atraves deste trecho, estamos novamente obtendo as informações do usuario, porem, encadeando de modo mais efetivo as chamadas.
+            <br>
+            Porem, dada a maneira como as instruções são executadas, podemos dizer que temos uma saida um tanto lenta.
+            <br>            
+        </p>
+        <p>
+            Para evitar esta situação, podemos realizar a chamada de outra forma:
+        </p>
+        <code>
+            main();
+            <br>    
+            async function main(){
+                <br>    
+                try{
+                    <br>    
+                    console.time('medida-promise');
+                    <br>    
+                    const usuario = await obterUsuario();
+                    <br>    
+
+                    const resultado = await Promise.all([
+                    <br>    
+                        obterTelefoneUsuario(usuario.id),
+                        <br>    
+                        obterEnderecoUsuario(usuario.id)
+                        <br>    
+                    ]);
+                    <br> 
+                    const telefone = resultado[0];
+                    <br> 
+                    const endereco = resultado[1];
+                    <br> 
+                    console.log(`
+                    <br> 
+                        Nome: ${usuario.nome}
+                        <br> 
+                        Telefone: (${telefone.ddd}) ${telefone.numero}
+                        <br> 
+                        Endereco: Rua ${endereco.rua}, ${endereco.numero}
+                        <br> 
+                    `);
+                    <br> 
+                    console.timeEnd('medida-promise');
+                    <br> 
+                }
+                <br> 
+                catch(error){
+                    <br> 
+                    console.log("Erro:", error);
+                    <br> 
+                }
+                <br> 
+            }
+            <br> 
+
+            >
+            <br> 
+            Nome: Jose
+            <br> 
+            Telefone: (11) 912345678
+            <br> 
+            Endereco: Rua hermanoteu, 11
+            <br> 
+
+            medida-promise: 3029.718ms
+        </code>
+        <p>
+            Fazendo uso da <i>Promise.all</i>, podemos sincronizar mais facilmente os retornos das chamadas.
+            <br>
+            Tudo o que precisamos fazer, é indicar ao metodo <i>all</i> quais chamadas queremos realizar, e assim que todas estiverem resolvidas, elas irão retornar juntas.
+            <br>
+            Informamos ao metodo <i>.all</i> as chamadas atraves de um array, e os retornos irão respeitar a ordem a qual foram solicitadas, retornando tambem como um array.
+        </p>
+        <p>
+            Outro detalhe importante, é analisar a diferença de tempo entre as execuções.
+            <br>
+            Executando da primeira maneira, o tempo de execução é de: medida-promise: 5020.511ms, enquanto executando do segundo modo, o tempo é de: medida-promise: 3029.718ms
+            <br>
+            Entre as execuções, ha uma diferença de quase 50% na velociade das chamadas.
+        </p>
+    </div>    
+</body>
+
+</html>
