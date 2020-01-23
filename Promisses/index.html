@@ -49,77 +49,103 @@
             <br>            
         </p>
         <p>
-            Para evitar este tipo de problema, podemos fazer uso de um padrão conhecido como <strong>Callback</strong>
+            Para evitar este tipo de problema, podemos fazer uso de um recurso chamado <strong>Promise</strong>
             <br>
-            Seguindo o conceito deste padrão, a mesma execução seria realizada da seguinte forma:
+            Seguindo o conceito deste recurso, a mesma execução seria realizada da seguinte forma:
         </p>
         <code>
-            function obterUsuario(callback){
+            function obterUsuario(){
                 <br>
-                setTimeout(function(){
+                return new Promise(function(resolve, reject){
                     <br>
-                    return callback(null, {
+                    setTimeout(function(){
                         <br>
-                        id:1,
+                        return resolve( {
+                            <br>
+                            id:1,
+                            <br>
+                            nome:'Jose',
+                            <br>
+                            dataNascimento: new Date()
+                            <br>
+                        })
                         <br>
-                        nome:'Jose',
-                        <br>
-                        dataNascimento: new Date()
-                        <br>
-                    })
+                    },1000)
                     <br>
-                },1000)
+                })
                 <br>
             }
-            <br><br>
-            function resolverUsuario(erro, usuario){
+            <br>
+            const usuarioPromisse = obterUsuario();
+            <br>
+            usuarioPromisse.then(function(resultado){
                 <br>
-                console.log('usuario', usuario);
+                console.log('Resultado usuario', resultado);
                 <br>
-            }
-            <br><br>
-            obterUsuario(resolverUsuario);
-            <br><br>
-            > usuario {id: 1, nome: "Jose", dataNascimento: Fri Jan 17 2020 10:07:36 GMT-0300 (Horário Padrão de Brasília)}
+            }).catch(function(erro){
+                <br>
+                console.log('Erro usuario', erro);
+                <br>
+            })
+            <br>
+            >Resultado usuario { id: 1, nome: 'Jose', dataNascimento: 2020-01-22T19:26:51.745Z }
         </code>
         <p>
-            Fazendo uso deste padrão, conhecido como callback, podemos sincronizar de modo simplista os retornos para que seja possivel obter os retornos quando estes estiverem disponiveis.
+            Fazendo uso da Promise, podemos sincronizar mais facilmente os retornos das chamadas, atraves dos dos metodos <code>resolve</code> e <code>reject</code>
             <br>
-            Para isso, modificamos a função obterUsuario, informando a ela uma função que deve ser executada quando o resultado de sua execução estiver pronto.
+            Neste exemplo, o retorno da função setTimeout sera devolvido por um dos dois metodos, passando o resultado obtido, seja sucesso(resolve) ou falha(reject). 
             <br>
-            Neste exemplo, o retorno da função setTimeout ira executar a função informada como callback, passando o resultado obtido, seja sucesso ou falha. 
-            <br>
-            Desta forma, ao fim do 1seg de espera, a função informada é chamada, nos forncendo o valor esperado.
         </p>
         <p>
-            Podemos ainda, ao inves de escrever dois trechos apartados de codigo, criar a função de callback diretamente no parametro: 
+            Deste modo, ao executarmos a função obterUsuario, apontando o resultado para uma variavel:
         </p>
         <code>
-            obterUsuario(function resolverUsuario(erro, usuario){
-                <br>
-                if(erro){
-                    <br>
-                    return;
-                    <br>
-                }else{
-                    <br>
-                    console.log('usuario', usuario);
-                    <br>
-                }
-                <br>
-            });
-
+            const usuarioPromisse = obterUsuario();
         </code>
+        <p>
+            a variavel em questão ira armazenar o retorno, que sera obtido atraves dos metodos <code>.then</code>, em caso de sucesso, e <code>.catch</code> em caso de erro.
+        </p>
+        <code>
+            <br>
+            usuarioPromisse.then(function(resultado){
+                <br>
+                console.log('Resultado usuario', resultado);
+                <br>
+            }).catch(function(erro){
+                <br>
+                console.log('Erro usuario', erro);
+                <br>
+            })            
+        </code>
+        <p>
+            Alem do modo com o <code>New Promisse</code>, podemos ainda utilizar um recurso do Node.JS para converter um função que esta escrita como <i>Callback</i> para <i>Promise</i>
+            <br>
+            Para isso, fazemos uso de uma biblioteca conhecida como <strong>Util</strong>.
+            <br>
+            Atraves dela, podemos acessar um metodo chamado <i>promisify</i>, que transforma um metodo criado como <i>Callback</i> para uma <i>Promise</i>            
+            <br>
+            <code>
+                const util = require('util');
+                <br>
+                const obterEndereçoUsuarioAsync = util.promisify(obterEndereçoUsuario);
+                <br>
+                const retornoEndereco = obterEndereçoUsuarioAsync(resultado.usuario.id)
+                <br>
+                    return retornoEndereco.then(function resolverEndereco(resultadoEndereco){
+                        <br>
+                        return{
+                            <br>
+                        }<br>
+                        <br>
+                    });
+            </code>
+        </p>
         <p>
             Dado este conceito, podemos fazer isso de modo que funções fiquem aninhadas, para ao final obtermos o resultado esperado.
             <br>
-            Não é o modo mais bonito de se resolver o problema, mas é um modo.
-            <br>
-            Os encadeamentos das funções estão no arquivo js, pois seriam muito extensos para por aqui.
+            Apesar de usarmos modos mais avançados para recuperar as informações, ainda assim as chamadas estão dependentes demais umas das outras.
         </p>
-        
-    </div>
-    
+    </div>    
 </body>
 
 </html>

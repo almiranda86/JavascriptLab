@@ -4,23 +4,32 @@
 3 - Obter o endereço do usuario, pelo seu id
 */
 
-function obterUsuario(callback){
-    setTimeout(function(){
-        return callback(null, {
-            id:1,
-            nome:'Jose',
-            dataNascimento: new Date()
-        })
-    },1000)
+//modulo interno do Node
+const util = require('util');
+
+const obterEndereçoUsuarioAsync = util.promisify(obterEndereçoUsuario);
+
+function obterUsuario(){
+    return new Promise(function(resolve, reject){
+        setTimeout(function(){
+            return resolve( {
+                id:1,
+                nome:'Jose',
+                dataNascimento: new Date()
+            })
+        },1000)
+    })
 }
 
-function obterTelefoneUsuario(idUsuario, callback){
-    setTimeout(function(){
-        return callback(null, {
-            numero: 912345678,
-            ddd: 11
-        })
-    },2000)
+function obterTelefoneUsuario(idUsuario){
+    return new Promise(function(resolve, reject){
+        setTimeout(function(){
+            return resolve( {
+                numero: 912345678,
+                ddd: 11
+            })
+        },2000)
+    })
 }
 
 function obterEndereçoUsuario(idUsuario, callback){
@@ -32,33 +41,36 @@ function obterEndereçoUsuario(idUsuario, callback){
     },2000)
 }
 
+const usuarioPromisse = obterUsuario();
 
-obterUsuario(function resolverUsuario(erro, usuario){
-    if(erro){
-        return;
-    }else{
-        console.log('usuario', usuario);
-        obterTelefoneUsuario(usuario.id, function resolverTelefone(erro1, telefone){
-            if(erro1){
-                return;
-            }else{
-                console.log('telefone', telefone);
-                obterEndereçoUsuario(usuario.id, function resolverUsuario(erro2, endereco){
-                    if(erro2){
-                        return;
-                    }else{
-                        console.log('endereco', endereco);
-        
-                        console.log(`
-                        Nome: ${usuario.nome}
-                        Endereco: ${endereco.rua}, ${endereco.numero}
-                        Telefone: (${telefone.ddd}) ${telefone.numero}
-                    `); 
-                    }
-                });
+usuarioPromisse
+    .then(function(resultadoUsuario){
+        return(obterTelefoneUsuario(resultadoUsuario.id))
+            .then(function resolverTelefone(resultadoTelefone){
+                return{
+                    usuario:{
+                        id: resultadoUsuario.id,
+                        nome: resultadoUsuario.nome
+                    },
+                    telefone:{
+                        numero: resultadoTelefone.numero,
+                        ddd: resultadoTelefone.ddd
+                    }   
+                }
+            })
+}).then(function(resultado){
+    const retornoEndereco = obterEndereçoUsuarioAsync(resultado.usuario.id)
+        return retornoEndereco.then(function resolverEndereco(resultadoEndereco){
+            return{
+                usuario: resultado.usuario,
+                telefone: resultado.telefone,
+                endereco: resultadoEndereco
             }
         });
-    }
-});
-
-
+})
+.then(function(resultadoFinal){
+    console.log('Resultado usuario', resultadoFinal);
+})
+.catch(function(erroUsuario){
+    console.log('Erro usuario', erroUsuario);
+})
